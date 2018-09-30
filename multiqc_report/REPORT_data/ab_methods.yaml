@@ -1,0 +1,52 @@
+abstract: 'The MinION is a portable DNA sequencer that generates long error-prone
+  reads. As both the hardware and analysis software are updated regularly, the most
+  suitable pipeline for subsequent analyses of a dataset generated with a given combination
+  of hardware and software for a given organism is not always clear. Here we present
+  a benchmark for a selection of <i>de novo</i> assemblers available to MinION users,
+  on a read set of <i>Escherichia coli</i> (NCBI taxID: 562). This benchmark is based
+  on a <a href=\>benchmarking routine</a>, designed to facilitate easy replication
+  on a read set of choice and addition of other <i>de novo</i> assembly pipelines.'
+assembly_quality: 'Produced assemblies were analyzed and compared on continuity and
+  agreement with the reference genome. Quast (version: 4.6.3) was used to determine
+  a wide array of quality metrics in both quality categories and produce synteny plots.
+  To elucidate any bias in the occurence of certain sequences, 5-mers in the assemblies
+  and the reference genomes were compared using Jellyfish (version: 2.2.10). Finally,
+  results were summarized using MultiQC.'
+authors: Carlos de Lannoy, data from data from [Loman Labs](http://lab.loman.net/2017/03/09/ultrareads-for-nanopore/)
+pipelines: '<h4>flye</h4>Flye uses A-Bruijn graphs to assemble long error-prone reads.
+  To do so, it follows arbitrary paths through the assembly graph and constructs new
+  assembly graphs from these paths.<br>&zwnj;<br>&zwnj;<b>Included tools:</b><ul><li>flye
+  (version: 2.3.5-release) </li></ul><br>&zwnj;<b>Used command:</b><pre><code>flye
+  --nano-raw {input.fastq} --genome-size 4641652 --out-dir . --threads 16
+
+  mv scaffolds.fasta {output}
+
+  </code></pre><h4>minimap2 miniasm raconX2</h4>Minimap2 is a fast all-vs-all mapper
+  of reads that relies on sketches of sequences, composed  of minimizers. Miniasm
+  uses the found overlaps to construct an assembly graph. As a consensus step is lacking
+  in this pipeline, a post-assembly polishing step is performed using minimap2+Racon
+  twice.<br>&zwnj;<br>&zwnj;<b>Included tools:</b><ul><li>minimap2 (version: 2.12-r827)
+  </li><li>racon (version: v1.3.1) </li><li>miniasm (version: 0.3-r179) </li></ul><br>&zwnj;<b>Used
+  command:</b><pre><code>minimap2 -x ava-ont -t 16 {input.fastq} {input.fastq} | gzip
+  -1 > minimap2.paf.gz
+
+  miniasm -f {input.fastq} minimap2.paf.gz > minimap2_miniasm.gfa
+
+  grep -Po ''(?<=S\t)utg.+\s[ACTG]+'' minimap2_miniasm.gfa | awk ''{{print ">"$1"\\n"$2}}''
+  | fold > minimap2_miniasm.fasta
+
+  minimap2 -x ava-ont -t 16 minimap2_miniasm.fasta {input.fastq} > minimap2_readsToContigs1.paf
+
+  racon -t 16 {input.fastq} minimap2_readsToContigs1.paf minimap2_miniasm.fasta >
+  minimap2_miniasm_raconX1.fasta
+
+  minimap2 -x ava-ont -t 16 minimap2_miniasm_raconX1.fasta {input.fastq} > minimap2_readsToContigs2.paf
+
+  racon -t 16 {input.fastq} minimap2_readsToContigs2.paf minimap2_miniasm_raconX1.fasta
+  > {output}
+
+  </code></pre>'
+readset_quality: 'Reads in this dataset were generated on a Minion with FLO-MIN106
+  flowcell with SQK-LSK108 kit. The reads were basecalled using Albacore 2.2.7. Prior
+  to assembly, the quality of the untreated readset was analysed using NanoPlot (version:
+  1.18.1) and mapped using the mappy module (version: None) in Python3.'

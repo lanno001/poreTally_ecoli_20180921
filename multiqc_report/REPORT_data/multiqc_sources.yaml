@@ -1,0 +1,9 @@
+Jellyfish:
+  all_sections:
+    flye.count: /mnt/testscratch/lanno001/poreTally_ecoliLoman_20180825_2/analysis/summary/jellyfish/flye.count
+    minimap2_miniasm_raconX2.count: /mnt/testscratch/lanno001/poreTally_ecoliLoman_20180825_2/analysis/summary/jellyfish/minimap2_miniasm_raconX2.count
+    reference.count: /mnt/testscratch/lanno001/poreTally_ecoliLoman_20180825_2/analysis/summary/jellyfish/reference.count
+QUAST:
+  all_sections:
+    flye: /mnt/testscratch/lanno001/poreTally_ecoliLoman_20180825_2/analysis/summary/quast/report.tsv
+    minimap2_miniasm_raconX2: /mnt/testscratch/lanno001/poreTally_ecoliLoman_20180825_2/analysis/summary/quast/report.tsv

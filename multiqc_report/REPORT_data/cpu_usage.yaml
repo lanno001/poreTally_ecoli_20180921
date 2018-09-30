@@ -1,0 +1,14 @@
+flye:
+  I/O in (MB/s): 2369.39
+  I/O out (MB/s): 5018.72
+  Wall time: 0:52:36
+  mean CPU load (MB): 0.0
+  peak PSS (MB): 23436.24
+  peak USS (MB): 23435.98
+minimap2_miniasm_raconX2:
+  I/O in (MB/s): 3.9
+  I/O out (MB/s): 360.34
+  Wall time: 0:21:42
+  mean CPU load (MB): 0.0
+  peak PSS (MB): 13657.24
+  peak USS (MB): 13657.07

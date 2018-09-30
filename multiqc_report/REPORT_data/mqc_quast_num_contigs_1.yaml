@@ -1,0 +1,4 @@
+flye:
+  '>= 50000 bp': 1.0
+minimap2_miniasm_raconX2:
+  '>= 50000 bp': 1.0

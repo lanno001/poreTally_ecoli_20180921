@@ -1,0 +1,16 @@
+flye:
+  CPU usage_mqc-generalstats-Wall_time: 0:52:36
+  CPU usage_mqc-generalstats-peak_CPU_usage_PSS_MB: 23436.24
+  QUAST_mqc-generalstats-Genome_fraction: 99.998
+  QUAST_mqc-generalstats-N50: 4634556.0
+  QUAST_mqc-generalstats-Total_length: 4634556.0
+  QUAST_mqc-generalstats-indels_per_100_kbp: 370.42
+  QUAST_mqc-generalstats-mismatches_per_100_kbp: 241.92
+minimap2_miniasm_raconX2:
+  CPU usage_mqc-generalstats-Wall_time: 0:21:42
+  CPU usage_mqc-generalstats-peak_CPU_usage_PSS_MB: 13657.24
+  QUAST_mqc-generalstats-Genome_fraction: 99.995
+  QUAST_mqc-generalstats-N50: 4606165.0
+  QUAST_mqc-generalstats-Total_length: 4606165.0
+  QUAST_mqc-generalstats-indels_per_100_kbp: 592.75
+  QUAST_mqc-generalstats-mismatches_per_100_kbp: 148.64
